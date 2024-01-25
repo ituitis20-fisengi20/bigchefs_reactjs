@@ -1,0 +1,20 @@
+.recipeDetailPage {
+    display: flex;
+    color: white;
+}
+
+.recipeDetailContainer {
+    background: #151c2c;
+    flex: 4;
+    display: flex;
+
+    gap: 20px;
+    justify-content: horizontal;
+}
+
+.left {
+    margin: 10px;
+}
+.right {
+    margin: 10px;
+}

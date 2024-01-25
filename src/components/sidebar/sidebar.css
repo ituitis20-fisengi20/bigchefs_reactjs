@@ -1,0 +1,36 @@
+.sidebarContainer {
+    position: sticky;
+    top: 40px;
+    height: 100vh;
+}
+
+.list {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.cat {
+    color: rgba(38, 50, 56, 0.6);
+    font-weight: 600;
+    font-size: 13px;
+    margin: 10px 0px;
+    font-family: "Public Sans", sans-serif;
+}
+
+.link {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0px;
+    border-radius: 10px;
+    color: rgba(38, 50, 56, 0.75);
+    font: 0.93em "Public Sans", sans-serif;
+    font-weight: 600;
+}
+
+.link:hover,
+.active {
+    background-color: rgba(13, 71, 161, 0.38);
+    color: rgb(13, 71, 161);
+}
