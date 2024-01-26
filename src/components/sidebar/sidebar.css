@@ -10,7 +10,7 @@
 }
 
 .cat {
-    color: rgba(38, 50, 56, 0.6);
+    color: #708090;
     font-weight: 600;
     font-size: 13px;
     margin: 10px 0px;
@@ -24,13 +24,13 @@
     gap: 10px;
     margin: 5px 0px;
     border-radius: 10px;
-    color: rgba(38, 50, 56, 0.75);
+    color: white;
     font: 0.93em "Public Sans", sans-serif;
     font-weight: 600;
 }
 
 .link:hover,
 .active {
-    background-color: rgba(13, 71, 161, 0.38);
-    color: rgb(13, 71, 161);
+    background-color: rgba(13, 71, 161, 0.68);
+    color: white;
 }

@@ -4,13 +4,12 @@
 
 .menu {
     flex: 1;
-    background-color: #fafafa;
+    background-color: #001f3f;
     padding: 30px 30px 10px 0px;
-    border-right: dashed rgba(183, 186, 193, 0.3);
 }
 
 .content {
-    flex: 5;
+    flex: 7;
     padding: 20px;
-    background-color: #fafafa;
+    background-color: #f8f8f9;
 }
