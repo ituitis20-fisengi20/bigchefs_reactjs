@@ -7,9 +7,6 @@
 }
 
 .headerTable {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     font-size: 0.8rem;
     color: #2f4f4f;
     font-family: "Public Sans", sans-serif;
@@ -39,25 +36,24 @@
     padding: 10px;
 }
 
-table {
+.recipeTable-container table {
     width: 100%;
     border-collapse: collapse;
 }
-thead {
+.recipeTable-container thead {
     background-color: rgba(13, 71, 161, 0.6);
     font-family: "Public Sans", sans-serif;
     font-size: 0.88rem;
 }
 
-td {
-    text-align: left;
-    padding: 20px 15px;
+.recipeTable-container td {
+    padding: 10px 15px;
     border-bottom: 1px dashed #ddd;
     font-family: "Public Sans", sans-serif;
     font-size: 0.8rem;
 }
 
-th {
+.recipeTable-container th {
     color: white;
     font-weight: 600;
     text-align: left;

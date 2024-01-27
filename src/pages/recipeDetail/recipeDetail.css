@@ -1,20 +1,26 @@
-.recipeDetailPage {
+.detailContent {
     display: flex;
-    color: white;
-}
-
-.recipeDetailContainer {
-    background: #151c2c;
-    flex: 4;
-    display: flex;
-
     gap: 20px;
-    justify-content: horizontal;
 }
 
-.left {
-    margin: 10px;
+.ingredients {
+    display: flex;
+    height: max-content;
+    flex: 4;
 }
-.right {
-    margin: 10px;
+
+.prep {
+    display: flex;
+    flex: 6;
+}
+
+.detailTitle {
+    font-weight: 900;
+    font-size: 1.2rem;
+    padding: 20px;
+    color: #001f3f;
+    font-family: "Public Sans", sans-serif;
+    margin-bottom: 20px;
+    border-bottom: solid 3px #2f4f4f;
+    width: max-content;
 }

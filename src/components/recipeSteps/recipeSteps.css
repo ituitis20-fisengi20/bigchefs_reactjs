@@ -1,0 +1,45 @@
+.recipeStepsContainer {
+    background: #fff;
+    box-shadow: 0 0 10px #d3d3d3;
+    padding-top: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.recipeStepsContainer h2 {
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: 20px;
+    color: #2f4f4f;
+    font-family: "Public Sans", sans-serif;
+}
+
+.recipeStepsContainer ol {
+    counter-reset: step-counter;
+    list-style-type: none;
+    padding-left: 0;
+    font-family: "Public Sans", sans-serif;
+    font-size: 0.88rem;
+}
+
+.recipeStepsContainer ol li {
+    counter-increment: step-counter;
+    display: flex;
+    align-items: center; /* This will vertically center the content */
+    margin-bottom: 20px;
+    padding-left: 20px; /* Adjust as needed */
+
+    line-height: 1.4;
+}
+
+.recipeStepsContainer ol li:before {
+    content: counter(step-counter) ".";
+    margin-right: 10px; /* Adjust the space between the number and the text */
+    font-weight: bold;
+    font-size: 18px; /* Adjust as needed */
+    color: #ff6347; /* Example color for the number */
+    padding-left: 0px;
+    padding-right: 10px;
+}

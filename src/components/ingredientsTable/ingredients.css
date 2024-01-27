@@ -1,0 +1,27 @@
+.ingredientsContainer {
+    background: #fff;
+    box-shadow: 0 0 10px #d3d3d3;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.ingredientsContainer table {
+    border: collapse;
+}
+
+.ingredientsContainer td {
+    padding: 10px 15px;
+    font-family: "Public Sans", sans-serif;
+    font-size: 0.88rem;
+}
+
+.ingredientsContainer .header {
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: 20px;
+    color: #2f4f4f;
+    font-family: "Public Sans", sans-serif;
+}

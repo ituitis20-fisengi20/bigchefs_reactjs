@@ -71,7 +71,7 @@ const transactions = [
         id: 12,
         user: "Theresa Webb",
         action: "Payment for",
-        date: "8",
+        date: "7",
         amount: "$52.17",
         status: "Failed",
         statusClass: "status-failed",
