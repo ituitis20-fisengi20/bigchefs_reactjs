@@ -28,19 +28,17 @@ const recipeSteps = [
     },
 ];
 
-const RecipeSteps = () => {
+const RecipeSteps = ({ steps }) => {
     return (
         <div className="recipeStepsContainer">
-            {recipeSteps.map((process, index) => (
-                <div key={index}>
-                    <h2>{process.name}</h2>
-                    <ol>
-                        {process.steps.map((step, stepIndex) => (
-                            <li key={stepIndex}>{step}</li>
-                        ))}
-                    </ol>
-                </div>
-            ))}
+            <div>
+                <h2>Adımlar</h2>
+                <ol>
+                    {steps.map((step, stepIndex) => (
+                        <li key={stepIndex}>{step}</li>
+                    ))}
+                </ol>
+            </div>
         </div>
     );
 };

@@ -2,10 +2,19 @@
     display: flex;
 }
 
-.menu {
+.menutrue {
     flex: 1;
     background-color: #001f3f;
-    padding: 30px 30px 10px 0px;
+    padding: 30px 10px 10px 0px;
+    transition: padding 0.2s;
+    transition: all 0.25s;
+}
+
+.menufalse {
+    flex: 0.1;
+    background-color: #001f3f;
+    padding: 30px 0px 5px 0px;
+    transition: flex 0.5s;
 }
 
 .content {

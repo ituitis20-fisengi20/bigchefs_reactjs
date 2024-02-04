@@ -1,56 +1,115 @@
 import "./ingredients.css";
-import React from "react";
+import React, { useState } from "react";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { IconButton } from "@mui/material";
+import LaunchIcon from "@mui/icons-material/Launch";
 
-const recipes = [
-    {
-        name: "Cut & Portion the Pork",
-        ingredients: [
-            {
-                quantity: "2040",
-                unit: "g",
-                name: "Sous Vide Pork Belly",
-                note: 'cut into 1" pieces',
-            },
-        ],
-    },
-    {
-        name: "For the Marinade",
-        ingredients: [
-            { quantity: "170", unit: "g", name: "Gochujang" },
-            { quantity: "96.3", unit: "g", name: "Dijon Mustard" },
-            { quantity: "68", unit: "g", name: "Honey" },
-            {
-                quantity: "31.7",
-                unit: "g",
-                name: "Blended Oil",
-                note: "for searing",
-            },
-        ],
-    },
-];
+import { Link } from "react-router-dom";
 
-export default function Ingredients() {
+export default function Ingredients({
+    recipeIngredients,
+    subrecipeIngredients,
+}) {
+    const [open, setOpen] = useState(false);
+
+    const toggleOpen = (recipeName) => {
+        setOpen((prevOpen) => ({
+            ...prevOpen,
+            // Toggle the boolean value for the specific recipeName
+            [recipeName]: !prevOpen[recipeName],
+        }));
+    };
     return (
         <div className="ingredientsContainer">
-            {recipes.map((recipe) => (
-                <div key={recipe.name}>
-                    <div className="header">{recipe.name}</div>
-                    <table>
-                        <tbody>
-                            {recipe.ingredients.map((ingredient, index) => (
-                                <tr key={index}>
-                                    <td>{ingredient.quantity}</td>
-                                    <td> {ingredient.unit}</td>
-                                    <td>{ingredient.name}</td>
-                                    {ingredient.note && (
-                                        <td>{ingredient.note}</td>
-                                    )}
+            <div className="header">Malzemeler</div>
+
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Miktar</th>
+                            <th>Birim</th>
+                            <th>İsim</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {recipeIngredients.map((ingredient) => (
+                            <tr key={ingredient.id}>
+                                <td>{ingredient.amount}</td>
+                                <td>{ingredient.unit}</td>
+                                <td>{ingredient.name}</td>
+                                {ingredient.note && <td>{ingredient.note}</td>}
+                            </tr>
+                        ))}
+                        {subrecipeIngredients.map((subrecipe) => (
+                            <React.Fragment key={subrecipe.recipeName}>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="subrecipe">
+                                        {subrecipe.recipeName}
+                                    </td>
+                                    <td>
+                                        <IconButton
+                                            aria-label="expand row"
+                                            size="small"
+                                            onClick={() =>
+                                                toggleOpen(subrecipe.recipeName)
+                                            }
+                                        >
+                                            {open[subrecipe.recipeName] ? (
+                                                <KeyboardArrowUpIcon />
+                                            ) : (
+                                                <KeyboardArrowDownIcon />
+                                            )}
+                                        </IconButton>
+                                    </td>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            ))}
+
+                                {open[subrecipe.recipeName] && (
+                                    <>
+                                        {subrecipe.ingredients.map(
+                                            (ingredient) => (
+                                                <tr key={ingredient.id}>
+                                                    <td>{ingredient.amount}</td>
+                                                    <td>{ingredient.unit}</td>
+                                                    <td>{ingredient.name}</td>
+                                                    {ingredient.note && (
+                                                        <td>
+                                                            {ingredient.note}
+                                                        </td>
+                                                    )}
+                                                </tr>
+                                            )
+                                        )}
+                                        <tr>
+                                            <td colSpan={4}>
+                                                {/* Set the colspan to the number of columns in your table */}
+                                                <div className="subrecipeBtn">
+                                                    <Link
+                                                        to={`/recipes/${subrecipe.id}`}
+                                                        style={{
+                                                            textDecoration:
+                                                                "none",
+                                                        }}
+                                                        className="subrecipeLink"
+                                                    >
+                                                        Ara Reçetenin Adımları
+                                                        için
+                                                        <LaunchIcon />
+                                                    </Link>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </>
+                                )}
+                            </React.Fragment>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }

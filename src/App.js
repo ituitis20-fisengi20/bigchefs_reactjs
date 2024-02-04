@@ -10,7 +10,10 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/recipes" element={<RecipeList />} />
-                    <Route path="/:recipeId" element={<RecipeDetail />} />
+                    <Route
+                        path="/recipes/:recipeId"
+                        element={<RecipeDetail />}
+                    />
                 </Routes>
             </BrowserRouter>
         </div>

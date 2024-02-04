@@ -12,6 +12,7 @@
 .prep {
     display: flex;
     flex: 6;
+    height: max-content;
 }
 
 .detailTitle {

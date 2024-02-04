@@ -1,86 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DehazeRoundedIcon from "@mui/icons-material/DehazeRounded";
 import { TablePagination } from "@mui/material";
 import "./recipeTable.css";
+import { Link } from "react-router-dom";
 
-const transactions = [
-    {
-        id: 1,
-        user: "Annette Black",
-        action: "Receive money from",
-        date: "1",
-        amount: "$68.71",
-        status: "Progress",
-        statusClass: "status-progress",
-    },
-    {
-        id: 2,
-        user: "Courtney Henry",
-        action: "Payment for",
-        date: "2",
-        amount: "$85.21",
-        status: "Completed",
-        statusClass: "status-completed",
-    },
-    {
-        id: 7,
-        user: "Theresa Webb",
-        action: "Payment for",
-        date: "3",
-        amount: "$52.17",
-        status: "Failed",
-        statusClass: "status-failed",
-    },
-    {
-        id: 8,
-        user: "Theresa Webb",
-        action: "Payment for",
-        date: "4",
-        amount: "$52.17",
-        status: "Failed",
-        statusClass: "status-failed",
-    },
-    {
-        id: 9,
-        user: "Theresa Webb",
-        action: "Payment for",
-        date: "5",
-        amount: "$52.17",
-        status: "Failed",
-        statusClass: "status-failed",
-    },
-    {
-        id: 10,
-        user: "Theresa Webb",
-        action: "Payment for",
-        date: "6",
-        amount: "$52.17",
-        status: "Failed",
-        statusClass: "status-failed",
-    },
-    {
-        id: 11,
-        user: "Theresa Webb",
-        action: "Payment for",
-        date: "7",
-        amount: "$52.17",
-        status: "Failed",
-        statusClass: "status-failed",
-    },
-    {
-        id: 12,
-        user: "Theresa Webb",
-        action: "Payment for",
-        date: "7",
-        amount: "$52.17",
-        status: "Failed",
-        statusClass: "status-failed",
-    },
-
-    // ... other transactions
-];
-
-const RecipeTable = () => {
+const RecipeTable = ({ recipes }) => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -108,22 +32,32 @@ const RecipeTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {transactions
+                    {recipes
                         .slice(
                             page * rowsPerPage,
                             page * rowsPerPage + rowsPerPage
                         )
-                        .map((transaction) => (
-                            <tr key={transaction.id}>
+                        .map((recipes) => (
+                            <tr key={recipes.id}>
                                 <td className="type">
                                     <img
-                                        src={`https://placehold.co/50x50?text=${transaction.user}`}
-                                        alt={`${transaction.user} avatar`}
+                                        src={`https://placehold.co/50x50?text=${recipes.name}`}
+                                        alt={` avatar`}
                                     />
                                     <span>Ana Reçete</span>
                                 </td>
-                                <td>Alfredo Makarna</td>
-                                <td>{transaction.date}</td>
+                                <td>
+                                    <Link
+                                        to={`/recipes/${recipes.id}`}
+                                        style={{
+                                            textDecoration: "none",
+                                            color: "inherit",
+                                        }}
+                                    >
+                                        {recipes.name}
+                                    </Link>
+                                </td>
+                                <td>12.12.2023</td>
                                 <td className="options">
                                     <DehazeRoundedIcon />
                                 </td>
@@ -132,11 +66,11 @@ const RecipeTable = () => {
                 </tbody>
             </table>
             <div className="footerTable">
-                <button className="view-all">View All</button>
+                {/* <button className="view-all">View All</button> */}
                 <TablePagination
                     rowsPerPageOptions={[5, 10, 25]}
                     component="div"
-                    count={transactions.length}
+                    count={recipes.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onPageChange={handleChangePage}

@@ -1,12 +1,12 @@
 import React from "react";
 import "./card.css";
 
-const Card = () => {
+const Card = ({ title, number }) => {
     return (
         <div className="cardContainer">
             <div className="texts">
-                <span className="title">Ana Reçete</span>
-                <span className="number">18,765</span>
+                <span className="title">{title}</span>
+                <span className="number">{number}</span>
             </div>
         </div>
     );

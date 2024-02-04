@@ -31,7 +31,9 @@
 .footerTable {
     font-family: "Public Sans", sans-serif;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; related with view all button
+    align-items: center; */
+    justify-content: flex-end; /* Aligns children (pagination) to the right */
     align-items: center;
     padding: 10px;
 }

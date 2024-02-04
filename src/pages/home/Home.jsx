@@ -1,8 +1,14 @@
-import Sidebar from "../../components/sidebar/Sidebar";
 import "./home.css";
+import Layout from "../layout/layout";
 
 const Home = () => {
-    return <div className="home"></div>;
+    return (
+        <>
+            <Layout>
+                <div className="home">Dashboard</div>
+            </Layout>
+        </>
+    );
 };
 
 export default Home;

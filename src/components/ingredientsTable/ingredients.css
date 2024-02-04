@@ -10,12 +10,22 @@
 
 .ingredientsContainer table {
     border: collapse;
+    width: 100%;
+    text-align: left;
 }
 
 .ingredientsContainer td {
-    padding: 10px 15px;
+    padding: 5px 15px;
     font-family: "Public Sans", sans-serif;
     font-size: 0.88rem;
+    gap: 10px;
+}
+
+.ingredientsContainer th {
+    padding: 0px 15px 20px 15px;
+    font-family: "Public Sans", sans-serif;
+    font-size: 1.1rem;
+    color: #2f4f4f;
 }
 
 .ingredientsContainer .header {
@@ -24,4 +34,51 @@
     padding: 20px;
     color: #2f4f4f;
     font-family: "Public Sans", sans-serif;
+}
+
+.ingredientsContainer th:nth-child(1),
+.ingredientsContainer td:nth-child(1) {
+    width: 20%;
+    text-align: left;
+}
+
+.ingredientsContainer th:nth-child(2),
+.ingredientsContainer td:nth-child(2) {
+    width: 30%;
+    padding-left: 10px;
+}
+
+.ingredientsContainer th:nth-child(3),
+.ingredientsContainer td:nth-child(3) {
+    width: 50%;
+}
+
+.ingredientsContainer .subrecipe {
+    font-weight: 600;
+    color: #2f4f4f;
+}
+
+.ingredientsContainer .subrecipeLink {
+    padding: 10px 40px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ff6347;
+    border-radius: 20px;
+    gap: 10px;
+    color: #f35e44;
+    font: 0.93em "Public Sans", sans-serif;
+    font-weight: 500;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.ingredientsContainer .subrecipeLink:hover {
+    background-color: #ff6347;
+    color: white;
+}
+
+.ingredientsContainer .subrecipeBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
