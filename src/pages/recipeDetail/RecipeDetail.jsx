@@ -43,9 +43,7 @@ const RecipeDetail = () => {
                         <div className="ingredients">
                             <Ingredients
                                 recipeIngredients={recipeDetail.ingredients}
-                                subrecipeIngredients={
-                                    recipeDetail.subrecipeIngredients
-                                }
+                                subrecipeIngredients={recipeDetail.subRecipes}
                             />
                         </div>
                         <div className="prep">

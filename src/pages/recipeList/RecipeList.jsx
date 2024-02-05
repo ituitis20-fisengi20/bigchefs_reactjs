@@ -29,27 +29,40 @@ const RecipeList = () => {
         fetchRecipes();
     }, []);
 
-    if (!allRecipes.recipes) return <div>No recipes available.</div>;
+    if (!allRecipes) return <div>No recipes available.</div>;
 
     if (error) return <div>Error: {error}</div>;
-    var recipeNumber = allRecipes.recipes.length;
-    var subrecipeNumber = allRecipes.subrecipes.length;
-    var total = recipeNumber + subrecipeNumber;
+
+    var deneme = allRecipes.type;
 
     return (
         <>
             <Layout>
                 <div className="recipeListContainer">
                     <div className="cards">
-                        <Card title="Reçete Sayısı" number={total} />
-                        <Card title="Ana Reçete Sayısı" number={recipeNumber} />
+                        <Card
+                            title="Reçete Sayısı"
+                            number={allRecipes.length}
+                        />
+                        <Card
+                            title="Ana Reçete Sayısı"
+                            number={
+                                allRecipes.filter(
+                                    (recipe) => recipe.type === "main"
+                                ).length
+                            }
+                        />
                         <Card
                             title="Ara Reçete Sayısı"
-                            number={subrecipeNumber}
+                            number={
+                                allRecipes.filter(
+                                    (recipe) => recipe.type === "sub"
+                                ).length
+                            }
                         />
                     </div>
                     <div>
-                        <RecipeTable recipes={allRecipes.recipes} />
+                        <RecipeTable recipes={allRecipes} />
                     </div>
                 </div>
             </Layout>

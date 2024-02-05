@@ -44,7 +44,10 @@ const RecipeTable = ({ recipes }) => {
                                         src={`https://placehold.co/50x50?text=${recipes.name}`}
                                         alt={` avatar`}
                                     />
-                                    <span>Ana Reçete</span>
+                                    <span>
+                                        {recipes.type == "main" && "Ana Reçete"}
+                                        {recipes.type == "sub" && "Ara Reçete"}
+                                    </span>
                                 </td>
                                 <td>
                                     <Link
@@ -57,7 +60,7 @@ const RecipeTable = ({ recipes }) => {
                                         {recipes.name}
                                     </Link>
                                 </td>
-                                <td>12.12.2023</td>
+                                <td>{recipes.lastModifiedAt}</td>
                                 <td className="options">
                                     <DehazeRoundedIcon />
                                 </td>

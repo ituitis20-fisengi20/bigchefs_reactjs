@@ -39,27 +39,29 @@ export default function Ingredients({
                             <tr key={ingredient.id}>
                                 <td>{ingredient.amount}</td>
                                 <td>{ingredient.unit}</td>
-                                <td>{ingredient.name}</td>
+                                <td>{ingredient.ingredient.name}</td>
                                 {ingredient.note && <td>{ingredient.note}</td>}
                             </tr>
                         ))}
                         {subrecipeIngredients.map((subrecipe) => (
-                            <React.Fragment key={subrecipe.recipeName}>
+                            <React.Fragment key={subrecipe.id}>
                                 <tr>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{subrecipe.amount}</td>
+                                    <td>{subrecipe.unit}</td>
                                     <td className="subrecipe">
-                                        {subrecipe.recipeName}
+                                        {subrecipe.recipe.name}
                                     </td>
                                     <td>
                                         <IconButton
                                             aria-label="expand row"
                                             size="small"
                                             onClick={() =>
-                                                toggleOpen(subrecipe.recipeName)
+                                                toggleOpen(
+                                                    subrecipe.recipe.name
+                                                )
                                             }
                                         >
-                                            {open[subrecipe.recipeName] ? (
+                                            {open[subrecipe.recipe.name] ? (
                                                 <KeyboardArrowUpIcon />
                                             ) : (
                                                 <KeyboardArrowDownIcon />
@@ -68,14 +70,19 @@ export default function Ingredients({
                                     </td>
                                 </tr>
 
-                                {open[subrecipe.recipeName] && (
+                                {open[subrecipe.recipe.name] && (
                                     <>
-                                        {subrecipe.ingredients.map(
+                                        {subrecipe.recipe.ingredients.map(
                                             (ingredient) => (
                                                 <tr key={ingredient.id}>
                                                     <td>{ingredient.amount}</td>
                                                     <td>{ingredient.unit}</td>
-                                                    <td>{ingredient.name}</td>
+                                                    <td>
+                                                        {
+                                                            ingredient
+                                                                .ingredient.name
+                                                        }
+                                                    </td>
                                                     {ingredient.note && (
                                                         <td>
                                                             {ingredient.note}
@@ -86,10 +93,9 @@ export default function Ingredients({
                                         )}
                                         <tr>
                                             <td colSpan={4}>
-                                                {/* Set the colspan to the number of columns in your table */}
                                                 <div className="subrecipeBtn">
                                                     <Link
-                                                        to={`/recipes/${subrecipe.id}`}
+                                                        to={`/recipes/${subrecipe.recipe.id}`}
                                                         style={{
                                                             textDecoration:
                                                                 "none",
