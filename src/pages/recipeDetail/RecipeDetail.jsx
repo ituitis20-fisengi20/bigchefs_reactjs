@@ -40,14 +40,29 @@ const RecipeDetail = () => {
                         <h1>{recipeDetail.name} </h1>
                     </div>
                     <div className="detailContent">
-                        <div className="ingredients">
-                            <Ingredients
-                                recipeIngredients={recipeDetail.ingredients}
-                                subrecipeIngredients={recipeDetail.subRecipes}
-                            />
+                        <div className="detailLeft">
+                            <div className="ingredients">
+                                <Ingredients
+                                    recipeIngredients={recipeDetail.ingredients}
+                                    subrecipeIngredients={
+                                        recipeDetail.subRecipes
+                                    }
+                                />
+                            </div>
                         </div>
-                        <div className="prep">
-                            <RecipeSteps steps={recipeDetail.steps} />
+                        <div className="detailRight">
+                            {`${process.env.PUBLIC_URL}/assets/image/${recipeDetail.id}.png` !=
+                                null && (
+                                <img
+                                    className="recipeImage"
+                                    src={`${process.env.PUBLIC_URL}/assets/image/${recipeDetail.id}.png`}
+                                    alt={`${recipeDetail.name}`}
+                                />
+                            )}
+
+                            <div className="prep">
+                                <RecipeSteps steps={recipeDetail.steps} />
+                            </div>
                         </div>
                     </div>
                 </div>

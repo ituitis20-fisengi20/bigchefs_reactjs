@@ -29,7 +29,7 @@ export default function Ingredients({
                     <thead>
                         <tr>
                             <th>Miktar</th>
-                            <th>Birim</th>
+
                             <th>İsim</th>
                             <th></th>
                         </tr>
@@ -37,17 +37,38 @@ export default function Ingredients({
                     <tbody>
                         {recipeIngredients.map((ingredient) => (
                             <tr key={ingredient.id}>
-                                <td>{ingredient.amount}</td>
-                                <td>{ingredient.unit}</td>
+                                <td>
+                                    <span>
+                                        {ingredient.amount !== 0 &&
+                                            ingredient.amount}
+                                    </span>
+                                    {ingredient.amount !== 0 && (
+                                        <span
+                                            style={{ marginRight: "5px" }}
+                                        ></span>
+                                    )}
+                                    <span>{ingredient.unit}</span>
+                                </td>
                                 <td>{ingredient.ingredient.name}</td>
                                 {ingredient.note && <td>{ingredient.note}</td>}
                             </tr>
                         ))}
+
                         {subrecipeIngredients.map((subrecipe) => (
                             <React.Fragment key={subrecipe.id}>
                                 <tr>
-                                    <td>{subrecipe.amount}</td>
-                                    <td>{subrecipe.unit}</td>
+                                    <td>
+                                        <span>
+                                            {subrecipe.amount !== 0 &&
+                                                subrecipe.amount}
+                                        </span>
+                                        {subrecipe.amount !== 0 && (
+                                            <span
+                                                style={{ marginRight: "5px" }}
+                                            ></span>
+                                        )}
+                                        <span>{subrecipe.unit}</span>
+                                    </td>
                                     <td className="subrecipe">
                                         {subrecipe.recipe.name}
                                     </td>
@@ -75,8 +96,25 @@ export default function Ingredients({
                                         {subrecipe.recipe.ingredients.map(
                                             (ingredient) => (
                                                 <tr key={ingredient.id}>
-                                                    <td>{ingredient.amount}</td>
-                                                    <td>{ingredient.unit}</td>
+                                                    <td>
+                                                        <span>
+                                                            {ingredient.amount !==
+                                                                0 &&
+                                                                ingredient.amount}
+                                                        </span>
+                                                        {ingredient.amount !==
+                                                            0 && (
+                                                            <span
+                                                                style={{
+                                                                    marginRight:
+                                                                        "10px",
+                                                                }}
+                                                            ></span>
+                                                        )}
+                                                        <span>
+                                                            {ingredient.unit}
+                                                        </span>
+                                                    </td>
                                                     <td>
                                                         {
                                                             ingredient

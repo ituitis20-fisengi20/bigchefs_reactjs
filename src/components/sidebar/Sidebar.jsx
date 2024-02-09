@@ -12,7 +12,7 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
     const isActive = (path) => {
         return location.pathname === path;
     };
-    console.log(location);
+
     return (
         <div className="sidebarContainer">
             <ul className="list">

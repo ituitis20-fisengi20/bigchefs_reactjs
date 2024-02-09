@@ -33,8 +33,6 @@ const RecipeList = () => {
 
     if (error) return <div>Error: {error}</div>;
 
-    var deneme = allRecipes.type;
-
     return (
         <>
             <Layout>

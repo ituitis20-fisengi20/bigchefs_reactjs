@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
 import "./layout.css";
 
 const Layout = ({ children }) => {
-    const [collapsed, setCollapsed] = useState(true);
+    const [collapsed, setCollapsed] = useState(() => {
+        const isCollapsed = localStorage.getItem("sidebarCollapsed");
+        return isCollapsed ? JSON.parse(isCollapsed) : true;
+    });
+
+    useEffect(() => {
+        localStorage.setItem("sidebarCollapsed", collapsed);
+    }, [collapsed]);
 
     const handleToggleSidebar = () => {
         setCollapsed(!collapsed);

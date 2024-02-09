@@ -31,9 +31,9 @@
 .footerTable {
     font-family: "Public Sans", sans-serif;
     display: flex;
-    /* justify-content: space-between; related with view all button
-    align-items: center; */
-    justify-content: flex-end; /* Aligns children (pagination) to the right */
+    justify-content: space-between;
+    align-items: center;
+
     align-items: center;
     padding: 10px;
 }
@@ -70,6 +70,9 @@
 .type img {
     border-radius: 50%;
     margin-right: 10px;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
 }
 
 .options {
