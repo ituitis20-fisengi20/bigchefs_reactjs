@@ -4,12 +4,15 @@ import "./recipeDetail.css";
 import Layout from "../layout/layout";
 
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import RecipeSteps from "../../components/recipeSteps/RecipeSteps";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const RecipeDetail = () => {
     const { recipeId } = useParams();
     const [recipeDetail, setRecipeDetail] = useState(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchRecipeData = async () => {
@@ -39,6 +42,7 @@ const RecipeDetail = () => {
                     <div className="detailTitle">
                         <h1>{recipeDetail.name} </h1>
                     </div>
+
                     <div className="detailContent">
                         <div className="detailLeft">
                             <div className="ingredients">

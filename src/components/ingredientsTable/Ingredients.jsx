@@ -2,6 +2,7 @@ import "./ingredients.css";
 import React, { useState } from "react";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import { IconButton } from "@mui/material";
 import LaunchIcon from "@mui/icons-material/Launch";
 
@@ -71,8 +72,6 @@ export default function Ingredients({
                                     </td>
                                     <td className="subrecipe">
                                         {subrecipe.recipe.name}
-                                    </td>
-                                    <td>
                                         <IconButton
                                             aria-label="expand row"
                                             size="small"
@@ -85,10 +84,11 @@ export default function Ingredients({
                                             {open[subrecipe.recipe.name] ? (
                                                 <KeyboardArrowUpIcon />
                                             ) : (
-                                                <KeyboardArrowDownIcon />
+                                                <KeyboardArrowDownOutlinedIcon />
                                             )}
                                         </IconButton>
                                     </td>
+                                    <td></td>
                                 </tr>
 
                                 {open[subrecipe.recipe.name] && (
