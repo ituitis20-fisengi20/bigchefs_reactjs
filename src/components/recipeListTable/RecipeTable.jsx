@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
 import DehazeRoundedIcon from "@mui/icons-material/DehazeRounded";
 import { TablePagination } from "@mui/material";
+
 import "./recipeTable.css";
+
 import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+
 
 const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -15,7 +18,7 @@ const formatDate = (dateString) => {
 
 const RecipeTable = ({ recipes }) => {
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(5);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -28,14 +31,14 @@ const RecipeTable = ({ recipes }) => {
 
     return (
         <div className="recipeTable-container">
-            <div className="headerTable">
+            <div className="tableTitle">
                 <h2>Reçeteler</h2>
             </div>
             <table>
-                <thead>
+                <thead className="tableHeader">
                     <tr>
+                        <th>Reçete</th>
                         <th>Reçete Tipi</th>
-                        <th>Reçete Adı</th>
                         <th>Son Düzenlenme Tarihi</th>
                         <th></th>
                     </tr>
