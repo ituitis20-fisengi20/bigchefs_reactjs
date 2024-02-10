@@ -1,8 +1,11 @@
 import RecipeTable from "../../components/recipeListTable/RecipeTable";
 import Card from "../../components/card/Card";
-import "./recipeList.css";
-import React, { useState, useEffect } from "react";
 import Layout from "../layout/layout";
+
+import "./recipeList.css";
+
+import React, { useState, useEffect } from "react";
+
 
 const RecipeList = () => {
     const [allRecipes, setRecipes] = useState([]);
