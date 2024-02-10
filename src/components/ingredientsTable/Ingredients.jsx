@@ -5,6 +5,17 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import { IconButton } from "@mui/material";
 import LaunchIcon from "@mui/icons-material/Launch";
+import Box from "@mui/material/Box";
+import Collapse from "@mui/material/Collapse";
+
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
 
 import { Link } from "react-router-dom";
 
@@ -24,53 +35,48 @@ export default function Ingredients({
     return (
         <div className="ingredientsContainer">
             <div className="header">Malzemeler</div>
-
-            <div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Miktar</th>
-
-                            <th>İsim</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            <TableContainer>
+                <Table>
+                    <TableBody>
                         {recipeIngredients.map((ingredient) => (
-                            <tr key={ingredient.id}>
-                                <td>
-                                    <span>
-                                        {ingredient.amount !== 0 &&
-                                            ingredient.amount}
-                                    </span>
-                                    {ingredient.amount !== 0 && (
-                                        <span
-                                            style={{ marginRight: "5px" }}
-                                        ></span>
-                                    )}
-                                    <span>{ingredient.unit}</span>
-                                </td>
-                                <td>{ingredient.ingredient.name}</td>
-                                {ingredient.note && <td>{ingredient.note}</td>}
-                            </tr>
-                        ))}
+                            <TableRow
+                                sx={{
+                                    borderBottom: "hidden",
+                                }}
+                            >
+                                <TableCell
+                                    component="td"
+                                    scope="row"
+                                    style={{ paddingBottom: "0px" }}
+                                >
+                                    {ingredient.amount !== 0 &&
+                                        ingredient.amount}{" "}
+                                    {""}
+                                    {ingredient.unit}
+                                </TableCell>
 
+                                <TableCell
+                                    align="left"
+                                    style={{ paddingBottom: "0px" }}
+                                >
+                                    {ingredient.ingredient.name}
+                                </TableCell>
+                            </TableRow>
+                        ))}
                         {subrecipeIngredients.map((subrecipe) => (
-                            <React.Fragment key={subrecipe.id}>
-                                <tr>
-                                    <td>
-                                        <span>
-                                            {subrecipe.amount !== 0 &&
-                                                subrecipe.amount}
-                                        </span>
-                                        {subrecipe.amount !== 0 && (
-                                            <span
-                                                style={{ marginRight: "5px" }}
-                                            ></span>
-                                        )}
-                                        <span>{subrecipe.unit}</span>
-                                    </td>
-                                    <td className="subrecipe">
+                            <React.Fragment>
+                                <TableRow>
+                                    <TableCell
+                                        component="td"
+                                        scope="row"
+                                        style={{ paddingBottom: "0px" }}
+                                    >
+                                        {subrecipe.amount !== 0 &&
+                                            subrecipe.amount}{" "}
+                                        {subrecipe.unit}
+                                    </TableCell>
+
+                                    <TableCell align="left">
                                         {subrecipe.recipe.name}
                                         <IconButton
                                             aria-label="expand row"
@@ -87,73 +93,85 @@ export default function Ingredients({
                                                 <KeyboardArrowDownOutlinedIcon />
                                             )}
                                         </IconButton>
-                                    </td>
-                                    <td></td>
-                                </tr>
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell
+                                        style={{
+                                            paddingBottom: 0,
+                                            paddingTop: 0,
+                                        }}
+                                        colSpan={2}
+                                    >
+                                        <Collapse
+                                            in={open[subrecipe.recipe.name]}
+                                            timeout="auto"
+                                            unmountOnExit
+                                        >
+                                            <Box
+                                                sx={{ padding: 1 }}
+                                                className="deneme"
+                                            >
+                                                <Typography
+                                                    variant="p"
+                                                    gutterBottom
+                                                    component="div"
+                                                    sx={{
+                                                        color: "#2f4f4f;",
+                                                        opacity: "0.8",
+                                                    }}
+                                                >
+                                                    Ara Reçete
+                                                </Typography>
+                                                <Table
+                                                    size="small"
+                                                    aria-label="subrecipeIngredients"
+                                                >
+                                                    <TableBody>
+                                                        {subrecipe.recipe.ingredients.map(
+                                                            (ingredient) => (
+                                                                <TableRow
+                                                                    key={
+                                                                        ingredient.id
+                                                                    }
+                                                                    sx={{
+                                                                        borderBottom:
+                                                                            "hidden",
+                                                                    }}
+                                                                >
+                                                                    <TableCell
+                                                                        component="th"
+                                                                        scope="row"
+                                                                    >
+                                                                        {ingredient.amount !==
+                                                                            0 &&
+                                                                            ingredient.amount}{" "}
+                                                                        {
+                                                                            ingredient.unit
+                                                                        }
+                                                                    </TableCell>
 
-                                {open[subrecipe.recipe.name] && (
-                                    <>
-                                        {subrecipe.recipe.ingredients.map(
-                                            (ingredient) => (
-                                                <tr key={ingredient.id}>
-                                                    <td>
-                                                        <span>
-                                                            {ingredient.amount !==
-                                                                0 &&
-                                                                ingredient.amount}
-                                                        </span>
-                                                        {ingredient.amount !==
-                                                            0 && (
-                                                            <span
-                                                                style={{
-                                                                    marginRight:
-                                                                        "10px",
-                                                                }}
-                                                            ></span>
+                                                                    <TableCell align="left">
+                                                                        {
+                                                                            ingredient
+                                                                                .ingredient
+                                                                                .name
+                                                                        }
+                                                                    </TableCell>
+                                                                </TableRow>
+                                                            )
                                                         )}
-                                                        <span>
-                                                            {ingredient.unit}
-                                                        </span>
-                                                    </td>
-                                                    <td>
-                                                        {
-                                                            ingredient
-                                                                .ingredient.name
-                                                        }
-                                                    </td>
-                                                    {ingredient.note && (
-                                                        <td>
-                                                            {ingredient.note}
-                                                        </td>
-                                                    )}
-                                                </tr>
-                                            )
-                                        )}
-                                        <tr>
-                                            <td colSpan={4}>
-                                                <div className="subrecipeBtn">
-                                                    <Link
-                                                        to={`/recipes/${subrecipe.recipe.id}`}
-                                                        style={{
-                                                            textDecoration:
-                                                                "none",
-                                                        }}
-                                                        className="subrecipeLink"
-                                                    >
-                                                        Ara Reçetenin Adımları
-                                                        için
-                                                        <LaunchIcon />
-                                                    </Link>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </>
-                                )}
+                                                    </TableBody>
+                                                </Table>
+                                            </Box>
+                                        </Collapse>
+                                    </TableCell>
+                                </TableRow>
                             </React.Fragment>
                         ))}
-                    </tbody>
-                </table>
-            </div>
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </div>
     );
 }

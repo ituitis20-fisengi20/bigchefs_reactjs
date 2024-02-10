@@ -10,7 +10,15 @@
     width: 100%;
 }
 
-.ingredientsContainer table {
+.ingredientsContainer .header {
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: 20px;
+    color: #2f4f4f;
+    font-family: "Public Sans", sans-serif;
+}
+
+/* .ingredientsContainer table {
     border: collapse;
     width: 100%;
     text-align: left;
@@ -30,13 +38,7 @@
     color: #2f4f4f;
 }
 
-.ingredientsContainer .header {
-    font-weight: 700;
-    font-size: 1.2rem;
-    padding: 20px;
-    color: #2f4f4f;
-    font-family: "Public Sans", sans-serif;
-}
+
 
 .ingredientsContainer th:nth-child(1),
 .ingredientsContainer td:nth-child(1) {
@@ -84,3 +86,8 @@
     justify-content: center;
     align-items: center;
 }
+
+.deneme {
+    display: flex;
+    width: 100%;
+} */
