@@ -7,6 +7,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import DnsOutlinedIcon from '@mui/icons-material/DnsOutlined';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+import { Avatar } from '@mui/material';
+import CardHeader from '@mui/material/CardHeader';
+
 
 
 import "./recipeTable.css";
@@ -38,24 +41,37 @@ const RecipeTable = ({ recipes }) => {
         setPage(0);
     };
 
-    const recipTableColumns = [
-        { 
-            field: 'name',
-            flex: 1,
-            renderHeader: () => (
-                <RecipeColumnHeader>
-                    <ReceiptLongOutlinedIcon></ReceiptLongOutlinedIcon>
-                    Recete
-                </RecipeColumnHeader>
-            ),
-        },
+    const recipeTableColumns = [
         {
             field: 'type',
-            flex: 1,
+            flex: 0.5,
             renderHeader: () => (
                 <RecipeColumnHeader>
                     <DnsOutlinedIcon></DnsOutlinedIcon>
                     Recete Turu
+                </RecipeColumnHeader>
+            ),
+            renderCell: (params) => (
+                <span
+                  style={{
+                    color: params.row.type === "main" ? "rgb(183, 110, 0)" : "rgb(0, 108, 156)",
+                    backgroundColor: params.row.type === "main" ? "rgba(255, 171, 0, 0.16)" : "rgba(0, 184, 217, 0.16)",
+                    fontWeight: 700,
+                    borderRadius: "9px",
+                    padding: "4px"
+                }}
+                >
+                  {params.row.type === "main" ? "Ana Reçete" : "Ara Reçete"}
+                </span>
+            )
+        },
+        { 
+            field: 'name',
+            flex: 2,
+            renderHeader: () => (
+                <RecipeColumnHeader>
+                    <ReceiptLongOutlinedIcon></ReceiptLongOutlinedIcon>
+                    Recete
                 </RecipeColumnHeader>
             ),
         },
@@ -80,18 +96,30 @@ const RecipeTable = ({ recipes }) => {
 
     return (
         <div className="recipeTable-container">
+            <CardHeader 
+                title={
+                    <Typography variant="h5" sx={{fontWeight: 700}}>
+                        Receteler
+                    </Typography>
+                }
+                sx={{ mt: 3, p:3}}
+            />
+            <box>
                 <div style={{ height: 400, width: '100%' }}>
                     <DataGrid
                         rows={recipeTableRows}
-                        columns={recipTableColumns}
+                        columns={recipeTableColumns}
                         initialState={{
                             pagination: {
-                                paginationModel: { page: 0, pageSize: 5 },
+                                paginationModel: { page: 0, pageSize: 10 },
                             },
                         }}
-                        pageSizeOptions={[5, 10]}
+                        pageSizeOptions={[5, 10, 20, 50]}
+                        checkboxSelection
+                        rowHeight={70}
+                        columnHeaderHeight={70}
                         sx = {{
-                           '& .MuiDataGrid-columnHeader': { 
+                            '& .MuiDataGrid-columnHeaders': { 
                                 backgroundColor: 'rgb(244, 246, 248)',
                                 color: 'rgb(99, 115, 129)',
                                 fontSize: "14px",
@@ -107,69 +135,16 @@ const RecipeTable = ({ recipes }) => {
                         }}  
                     />
                 </div>
-            <div className="tableTitle">
-                <h2>Reçeteler</h2>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Reçete</th>
-                        <th>Reçete Tipi</th>
-                        <th>Son Düzenlenme Tarihi</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {recipes
-                        .slice(
-                            page * rowsPerPage,
-                            page * rowsPerPage + rowsPerPage
-                        )
-                        .map((recipes) => (
-                            <tr key={recipes.id}>
-                                <td className="type">
-                                    <img
-                                        src={`${process.env.PUBLIC_URL}/assets/image/${recipes.id}.png`}
-                                        alt={`${recipes.name}`}
-                                    />
-                                    <span>
-                                        {recipes.type == "main" && "Ana Reçete"}
-                                        {recipes.type == "sub" && "Ara Reçete"}
-                                    </span>
-                                </td>
-                                <td>
-                                    <Link
-                                        to={`/recipes/${recipes.id}`}
-                                        style={{
-                                            textDecoration: "none",
-                                            color: "inherit",
-                                        }}
-                                    >
-                                        {recipes.name}
-                                    </Link>
-                                </td>
-                                <td>{formatDate(recipes.lastModifiedAt)}</td>
-                                <td className="options">
-                                    <DehazeRoundedIcon />
-                                </td>
-                            </tr>
-                        ))}
-                </tbody>
-            </table>
-            <div className="footerTable">
-                <button className="view-all">Reçete Ekle</button>
-                <TablePagination
-                    rowsPerPageOptions={[5, 10, 25]}
-                    component="div"
-                    count={recipes.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                />
-            </div>
+            </box>
+            
         </div>
     );
 };
 
 export default RecipeTable;
+
+/*
+<div className="footerTable">
+                <button className="view-all">Reçete Ekle</button>
+            </div>
+*/
