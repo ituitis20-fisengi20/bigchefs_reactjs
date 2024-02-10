@@ -10,7 +10,7 @@ import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined
 
 
 import "./recipeTable.css";
-import RecipeColumnHeader from "./recipeColumnHeader/RecipeColumnHeader"
+import RecipeColumnHeader from "../RecipeColumnHeader"
 
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
@@ -45,7 +45,7 @@ const RecipeTable = ({ recipes }) => {
             renderHeader: () => (
                 <RecipeColumnHeader>
                     <ReceiptLongOutlinedIcon></ReceiptLongOutlinedIcon>
-                    <Typography sx={{fontWeight: 'bold'}}>Recete</Typography>
+                    Recete
                 </RecipeColumnHeader>
             ),
         },
@@ -55,7 +55,7 @@ const RecipeTable = ({ recipes }) => {
             renderHeader: () => (
                 <RecipeColumnHeader>
                     <DnsOutlinedIcon></DnsOutlinedIcon>
-                    <Typography sx={{fontWeight: 'bold'}}>Recete Turu</Typography>
+                    Recete Turu
                 </RecipeColumnHeader>
             ),
         },
@@ -65,7 +65,7 @@ const RecipeTable = ({ recipes }) => {
             renderHeader: () => (
                 <RecipeColumnHeader>
                     <CalendarMonthOutlinedIcon></CalendarMonthOutlinedIcon>
-                    <Typography sx={{fontWeight: 'bold'}}>Son Duzenlenme Tarihi</Typography>
+                    Son Duzenlenme Tarihi
                 </RecipeColumnHeader>
             ),
         },
@@ -85,15 +85,25 @@ const RecipeTable = ({ recipes }) => {
                         rows={recipeTableRows}
                         columns={recipTableColumns}
                         initialState={{
-                        pagination: {
-                            paginationModel: { page: 0, pageSize: 5 },
-                        },
+                            pagination: {
+                                paginationModel: { page: 0, pageSize: 5 },
+                            },
                         }}
                         pageSizeOptions={[5, 10]}
                         sx = {{
                            '& .MuiDataGrid-columnHeader': { 
-                                backgroundColor: 'rgba(13, 71, 161, 0.6)',
-                            }
+                                backgroundColor: 'rgb(244, 246, 248)',
+                                color: 'rgb(99, 115, 129)',
+                                fontSize: "14px",
+                                fontWeight: 600,
+                            },
+                            '& .MuiDataGrid-cell': {
+                                borderStyle: 'dashed',
+                                borderWidth: '1px',
+                                borderColor: 'rgb(241, 243, 244)',  
+                                borderLeft: 'none',
+                                borderRight: 'none',
+                            },
                         }}  
                     />
                 </div>

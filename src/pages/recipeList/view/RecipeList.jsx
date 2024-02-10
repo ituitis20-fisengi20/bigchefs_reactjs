@@ -1,8 +1,10 @@
-import RecipeTable from "../../components/recipeListTable/RecipeTable";
-import Card from "../../components/card/Card";
-import Layout from "../layout/layout";
+import RecipeTable from "../../../components/recipeListTable/view/RecipeTable";
+import Card from "../../../components/card/Card";
+import Layout from "../../layout/layout";
+import MetricCard from "../metric-card";
 
 import "./recipeList.css";
+
 
 import React, { useState, useEffect } from "react";
 
@@ -72,3 +74,9 @@ const RecipeList = () => {
 };
 
 export default RecipeList;
+/*
+<MetricCard
+    title="Toplam Reçete Sayısı"
+    number={allRecipes.length}
+/>
+*/
