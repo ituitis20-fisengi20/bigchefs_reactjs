@@ -1,7 +1,16 @@
 import DehazeRoundedIcon from "@mui/icons-material/DehazeRounded";
 import { TablePagination } from "@mui/material";
+import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import DnsOutlinedIcon from '@mui/icons-material/DnsOutlined';
+import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+
 
 import "./recipeTable.css";
+import RecipeColumnHeader from "./recipeColumnHeader/RecipeColumnHeader"
 
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
@@ -29,13 +38,70 @@ const RecipeTable = ({ recipes }) => {
         setPage(0);
     };
 
+    const recipTableColumns = [
+        { 
+            field: 'name',
+            flex: 1,
+            renderHeader: () => (
+                <RecipeColumnHeader>
+                    <ReceiptLongOutlinedIcon></ReceiptLongOutlinedIcon>
+                    <Typography sx={{fontWeight: 'bold'}}>Recete</Typography>
+                </RecipeColumnHeader>
+            ),
+        },
+        {
+            field: 'type',
+            flex: 1,
+            renderHeader: () => (
+                <RecipeColumnHeader>
+                    <DnsOutlinedIcon></DnsOutlinedIcon>
+                    <Typography sx={{fontWeight: 'bold'}}>Recete Turu</Typography>
+                </RecipeColumnHeader>
+            ),
+        },
+        {
+            field: 'lastModifiedAt',
+            flex: 1,
+            renderHeader: () => (
+                <RecipeColumnHeader>
+                    <CalendarMonthOutlinedIcon></CalendarMonthOutlinedIcon>
+                    <Typography sx={{fontWeight: 'bold'}}>Son Duzenlenme Tarihi</Typography>
+                </RecipeColumnHeader>
+            ),
+        },
+    ]
+    
+    const recipeTableRows = recipes.map(recipe => ({
+        id: recipe.id,
+        name: recipe.name,
+        type: recipe.type,
+        lastModifiedAt: formatDate(recipe.lastModifiedAt)
+    }))
+
     return (
         <div className="recipeTable-container">
+                <div style={{ height: 400, width: '100%' }}>
+                    <DataGrid
+                        rows={recipeTableRows}
+                        columns={recipTableColumns}
+                        initialState={{
+                        pagination: {
+                            paginationModel: { page: 0, pageSize: 5 },
+                        },
+                        }}
+                        pageSizeOptions={[5, 10]}
+                        sx = {{
+                           '& .MuiDataGrid-columnHeader': { 
+                                backgroundColor: 'rgba(13, 71, 161, 0.6)',
+                            }
+                        }}  
+                    />
+                </div>
             <div className="tableTitle">
                 <h2>Reçeteler</h2>
             </div>
             <table>
-                <thead className="tableHeader">
+                <thead>
                     <tr>
                         <th>Reçete</th>
                         <th>Reçete Tipi</th>
