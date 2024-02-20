@@ -1,4 +1,4 @@
-.recipeDetailContainer {
+/* .recipeDetailContainer {
     display: flex;
     flex-direction: column;
     margin: 5px;
@@ -85,8 +85,8 @@
     max-height: 400px;
     margin-top: 20px;
 
-    /* border-radius: 20px; */
-}
+    
+} */
 
 ::-webkit-scrollbar {
     width: 8px;

@@ -1,20 +1,12 @@
 .recipeStepsContainer {
-    background: #fff;
-    box-shadow: 0 0 10px #d3d3d3;
-    padding-top: 20px;
+    /* /* background: #fff;
+    box-shadow: 0 0 10px #d3d3d3; */
+
     border-radius: 20px;
     display: flex;
 
+    margin-right: 20px;
     flex-direction: column;
-    width: 100%;
-}
-
-.recipeStepsContainer h2 {
-    font-weight: 700;
-    font-size: 1.2rem;
-    padding: 20px;
-    color: #2f4f4f;
-    font-family: "Public Sans", sans-serif;
 }
 
 .recipeStepsContainer ol {
@@ -29,7 +21,7 @@
     counter-increment: step-counter;
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     padding-left: 20px;
 
     line-height: 1.4;

@@ -1,12 +1,7 @@
 import "./ingredients.css";
+
 import React, { useState } from "react";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
-import { IconButton } from "@mui/material";
-import LaunchIcon from "@mui/icons-material/Launch";
-import Box from "@mui/material/Box";
-import Collapse from "@mui/material/Collapse";
+import { Link } from "react-router-dom";
 
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -16,8 +11,19 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
+import { IconButton } from "@mui/material";
+import LaunchIcon from "@mui/icons-material/Launch";
+import Box from "@mui/material/Box";
+import Collapse from "@mui/material/Collapse";
 
-import { Link } from "react-router-dom";
+const capitalizeFirstLetter = (string) => {
+    if (!string) return "";
+    return string.charAt(0).toUpperCase() + string.slice(1);
+};
 
 export default function Ingredients({
     recipeIngredients,
@@ -28,16 +34,36 @@ export default function Ingredients({
     const toggleOpen = (recipeName) => {
         setOpen((prevOpen) => ({
             ...prevOpen,
-            // Toggle the boolean value for the specific recipeName
+
             [recipeName]: !prevOpen[recipeName],
         }));
     };
     return (
-        <div className="ingredientsContainer">
-            <div className="header">Malzemeler</div>
+        <Grid
+            container
+            direction="column"
+            justifyContent="flex-start"
+            alignItems="flex-start"
+        >
+            <Typography
+                sx={{
+                    fontWeight: 700,
+                    fontSize: "1.2rem",
+                    paddingBottom: "10px",
+                    marginTop: "20px",
+                    color: "#2f4f4f",
+                    fontFamily: '"Public Sans", sans-serif',
+                }}
+            >
+                Malzemeler
+            </Typography>
             <TableContainer>
-                <Table>
-                    <TableBody>
+                <Table sx={{ overflow: "hidden" }}>
+                    <TableBody
+                        sx={{
+                            borderBottom: "hidden",
+                        }}
+                    >
                         {recipeIngredients.map((ingredient) => (
                             <TableRow
                                 sx={{
@@ -48,51 +74,103 @@ export default function Ingredients({
                                     component="td"
                                     scope="row"
                                     style={{ paddingBottom: "0px" }}
+                                    width="25%"
                                 >
-                                    {ingredient.amount !== 0 &&
-                                        ingredient.amount}{" "}
-                                    {""}
-                                    {ingredient.unit}
+                                    <Typography
+                                        variant="body2"
+                                        sx={{
+                                            color: "#0F3847;",
+                                        }}
+                                    >
+                                        {ingredient.amount !== 0 &&
+                                            ingredient.amount}{" "}
+                                        {""}
+                                        {ingredient.unit}
+                                    </Typography>
                                 </TableCell>
 
                                 <TableCell
                                     align="left"
                                     style={{ paddingBottom: "0px" }}
+                                    width="75%"
                                 >
-                                    {ingredient.ingredient.name}
+                                    <Typography
+                                        variant="body2"
+                                        sx={{
+                                            fontWeight: 450,
+                                            color: "#011325",
+                                            fontFamily:
+                                                '"Public Sans", sans-serif',
+                                        }}
+                                    >
+                                        {capitalizeFirstLetter(
+                                            ingredient.ingredient.name
+                                        )}
+                                    </Typography>
                                 </TableCell>
                             </TableRow>
                         ))}
                         {subrecipeIngredients.map((subrecipe) => (
                             <React.Fragment>
-                                <TableRow>
+                                <TableRow
+                                    sx={{
+                                        borderBottom: "hidden",
+                                    }}
+                                >
                                     <TableCell
                                         component="td"
                                         scope="row"
                                         style={{ paddingBottom: "0px" }}
                                     >
-                                        {subrecipe.amount !== 0 &&
-                                            subrecipe.amount}{" "}
-                                        {subrecipe.unit}
+                                        <Typography
+                                            variant="body2"
+                                            sx={{
+                                                color: "#0F3847;",
+                                            }}
+                                        >
+                                            {subrecipe.amount !== 0 &&
+                                                subrecipe.amount}{" "}
+                                            {subrecipe.unit}
+                                        </Typography>
                                     </TableCell>
 
                                     <TableCell align="left">
-                                        {subrecipe.recipe.name}
-                                        <IconButton
-                                            aria-label="expand row"
-                                            size="small"
-                                            onClick={() =>
-                                                toggleOpen(
-                                                    subrecipe.recipe.name
-                                                )
-                                            }
+                                        <Typography
+                                            variant="body2"
+                                            sx={{
+                                                fontWeight: 450,
+                                                color: "#011325",
+                                                fontFamily:
+                                                    '"Public Sans", sans-serif',
+                                            }}
                                         >
-                                            {open[subrecipe.recipe.name] ? (
-                                                <KeyboardArrowUpIcon />
-                                            ) : (
-                                                <KeyboardArrowDownOutlinedIcon />
+                                            {capitalizeFirstLetter(
+                                                subrecipe.recipe.name
                                             )}
-                                        </IconButton>
+                                            <IconButton
+                                                aria-label="expand row"
+                                                size="small"
+                                                onClick={() =>
+                                                    toggleOpen(
+                                                        subrecipe.recipe.name
+                                                    )
+                                                }
+                                                sx={{
+                                                    border: "1px solid #011325",
+                                                    color: "#011325",
+                                                    borderRadius: "50%",
+                                                    padding: "0.1px",
+                                                    marginLeft: "10px",
+                                                    opacity: "0.4",
+                                                }}
+                                            >
+                                                {open[subrecipe.recipe.name] ? (
+                                                    <KeyboardArrowUpIcon />
+                                                ) : (
+                                                    <KeyboardArrowDownOutlinedIcon />
+                                                )}
+                                            </IconButton>
+                                        </Typography>
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
@@ -109,25 +187,48 @@ export default function Ingredients({
                                             unmountOnExit
                                         >
                                             <Box
-                                                sx={{ padding: 1 }}
-                                                className="deneme"
+                                                sx={{
+                                                    padding: 2,
+                                                    backgroundColor: "",
+                                                    borderTop: "1px solid #ccc",
+                                                    borderBottom:
+                                                        "1px solid #ccc",
+                                                }}
                                             >
-                                                <Typography
-                                                    variant="p"
-                                                    gutterBottom
-                                                    component="div"
-                                                    sx={{
-                                                        color: "#2f4f4f;",
-                                                        opacity: "0.8",
-                                                    }}
-                                                >
-                                                    Ara Reçete
-                                                </Typography>
                                                 <Table
                                                     size="small"
                                                     aria-label="subrecipeIngredients"
                                                 >
                                                     <TableBody>
+                                                        <TableRow
+                                                            sx={{
+                                                                borderBottom:
+                                                                    "hidden",
+                                                            }}
+                                                        >
+                                                            <TableCell
+                                                                component="th"
+                                                                scope="row"
+                                                                width="20%"
+                                                            ></TableCell>
+                                                            <TableCell
+                                                                component="th"
+                                                                scope="row"
+                                                            >
+                                                                <Typography
+                                                                    variant="p"
+                                                                    gutterBottom
+                                                                    component="div"
+                                                                    sx={{
+                                                                        color: "#2f4f4f;",
+                                                                        opacity:
+                                                                            "0.95",
+                                                                    }}
+                                                                >
+                                                                    Ara Reçete
+                                                                </Typography>
+                                                            </TableCell>
+                                                        </TableRow>
                                                         {subrecipe.recipe.ingredients.map(
                                                             (ingredient) => (
                                                                 <TableRow
@@ -142,21 +243,46 @@ export default function Ingredients({
                                                                     <TableCell
                                                                         component="th"
                                                                         scope="row"
+                                                                        width="20%"
+                                                                    ></TableCell>
+                                                                    <TableCell
+                                                                        component="th"
+                                                                        scope="row"
+                                                                        width="35%"
                                                                     >
-                                                                        {ingredient.amount !==
-                                                                            0 &&
-                                                                            ingredient.amount}{" "}
-                                                                        {
-                                                                            ingredient.unit
-                                                                        }
+                                                                        <Typography
+                                                                            variant="body2"
+                                                                            sx={{
+                                                                                color: "#0F3847;",
+                                                                            }}
+                                                                        >
+                                                                            {ingredient.amount !==
+                                                                                0 &&
+                                                                                ingredient.amount}{" "}
+                                                                            {
+                                                                                ingredient.unit
+                                                                            }
+                                                                        </Typography>
                                                                     </TableCell>
-
-                                                                    <TableCell align="left">
-                                                                        {
-                                                                            ingredient
-                                                                                .ingredient
-                                                                                .name
-                                                                        }
+                                                                    <TableCell
+                                                                        align="left"
+                                                                        width="45%"
+                                                                    >
+                                                                        <Typography
+                                                                            variant="body2"
+                                                                            sx={{
+                                                                                fontWeight: 450,
+                                                                                color: "#011325",
+                                                                                fontFamily:
+                                                                                    '"Public Sans", sans-serif',
+                                                                            }}
+                                                                        >
+                                                                            {capitalizeFirstLetter(
+                                                                                ingredient
+                                                                                    .ingredient
+                                                                                    .name
+                                                                            )}
+                                                                        </Typography>
                                                                     </TableCell>
                                                                 </TableRow>
                                                             )
@@ -172,6 +298,6 @@ export default function Ingredients({
                     </TableBody>
                 </Table>
             </TableContainer>
-        </div>
+        </Grid>
     );
 }
