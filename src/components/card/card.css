@@ -1,6 +1,6 @@
 .cardContainer {
     background-color: white;
-    padding: 20px;
+    padding: 30px;
     border-radius: 20px;
     box-shadow: 0 0 10px #d3d3d3;
     gap: 20px;
@@ -12,18 +12,19 @@
     flex-direction: column;
     gap: 20px;
     color: #2f4f4f;
+    font-family: "Public Sans", sans-serif;
+
 }
 
 .title {
     margin-bottom: 5px;
+    font-weight: 500;
 
-    font-family: "Public Sans", sans-serif;
 }
 
 .number {
     font-size: 1.9rem;
-    font-weight: 600;
     margin-bottom: 5px;
+    font-weight: 600;
 
-    font-family: "Public Sans", sans-serif;
 }

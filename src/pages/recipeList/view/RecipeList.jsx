@@ -1,8 +1,13 @@
-import RecipeTable from "../../components/recipeListTable/RecipeTable";
-import Card from "../../components/card/Card";
+import RecipeTable from "../../../components/recipeListTable/view/RecipeTable";
+import Card from "../../../components/card/Card";
+import Layout from "../../layout/layout";
+import MetricCard from "../metric-card";
+
 import "./recipeList.css";
+
+
 import React, { useState, useEffect } from "react";
-import Layout from "../layout/layout";
+
 
 const RecipeList = () => {
     const [allRecipes, setRecipes] = useState([]);
@@ -36,10 +41,10 @@ const RecipeList = () => {
     return (
         <>
             <Layout>
-                <div className="recipeListContainer">
-                    <div className="cards">
+                <div className="recipeList-Container">
+                    <div className="recipeList-MetricCards">
                         <Card
-                            title="Reçete Sayısı"
+                            title="Toplam Reçete Sayısı"
                             number={allRecipes.length}
                         />
                         <Card
@@ -59,7 +64,7 @@ const RecipeList = () => {
                             }
                         />
                     </div>
-                    <div>
+                    <div className="recipeList-Table">
                         <RecipeTable recipes={allRecipes} />
                     </div>
                 </div>
@@ -69,3 +74,9 @@ const RecipeList = () => {
 };
 
 export default RecipeList;
+/*
+<MetricCard
+    title="Toplam Reçete Sayısı"
+    number={allRecipes.length}
+/>
+*/
