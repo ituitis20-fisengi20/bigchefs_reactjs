@@ -9,6 +9,7 @@ import DnsOutlinedIcon from '@mui/icons-material/DnsOutlined';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import { Avatar } from '@mui/material';
 import CardHeader from '@mui/material/CardHeader';
+import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
 
 
 
@@ -102,6 +103,7 @@ const RecipeTable = ({ recipes }) => {
                         Receteler
                     </Typography>
                 }
+                avatar={<MenuBookOutlinedIcon/>}
                 sx={{ mt: 3, p:3}}
             />
             <box>
